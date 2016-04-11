@@ -1,4 +1,4 @@
-
+# Eventex
 
 Sistema de Eventos encomendado pela Morena.
 
@@ -15,7 +15,7 @@ Sistema de Eventos encomendado pela Morena.
 5. Configure a instacia com o .env
 6. Execute os testes.
 
-'''console
+```console
 git clone git@github.com:henriquebastos/eventex.git wttd
 cd wttd
 python -m venv .wttd
@@ -23,4 +23,21 @@ source .wttd/bin/active
 pip install -r requirements-dev.txt
 cp contrib/env-sample .env
 python manage.py test
-'''
+```
+
+## Como fazer o deploy?
+
+1. Crie uma instância no heroku
+2. Envie as configurações para o heroku
+3. Defina uma SECRET_KEY segura para instância.
+4. Defina DEBUG=False
+5. Configure o serviço de email.
+6. Envie o código para o heroku
+
+```console
+heroku create minhainstancia
+heroku config:push
+heroku config:set SECRET_KEY=`python contrib/secret_gen.py`
+heroku config:set DEBUG=False
+#configure o email
+git push heroku master --force
