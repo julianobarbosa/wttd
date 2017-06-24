@@ -39,7 +39,6 @@ class SubscriptionsNewGet(TestCase):
         self.assertIsInstance(form, SubscriptionForm)
 
 
-
 class SubscriptionsNewPostValid(TestCase):
     def setUp(self):
         data = dict(name='Henrique Bastos', cpf='12345678901',
@@ -55,6 +54,7 @@ class SubscriptionsNewPostValid(TestCase):
 
     def test_save_subcription(self):
         self.assertTrue(Subscription.objects.exists())
+
 
 class SubscriptionsNewPostInvalid(TestCase):
     def setUp(self):
@@ -77,3 +77,11 @@ class SubscriptionsNewPostInvalid(TestCase):
 
     def test_dont_save_subscription(self):
         self.assertFalse(Subscription.objects.exists())
+
+
+class TemplateRegressionTest(TestCase):
+    def _test_template_has_non_field_errors(self):
+        invalid_data = dict(name='Henrique Bastos', cpf='12345678901')
+        response = self.client.post(r('subscriptions:new'), invalid_data)
+
+        self.assertContains(response, '<ul class=errorlist nonfield>')

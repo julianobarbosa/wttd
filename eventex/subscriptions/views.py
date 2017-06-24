@@ -28,16 +28,16 @@ def create(request):
         return render(request, 'subscriptions/subscription_form.html',
                       {'form': form})
 
-    subcription = Subscription.objects.create(**form.cleaned_data)
+    subscription = form.save()
 
     # Send subscription email
     _send_mail('Confirmação de inscrição',
                settings.DEFAULT_FROM_EMAIL,
-               subcription.email,
+               subscription.email,
                'subscriptions/subscription_email.txt',
-               {'subscription': subcription})
+               {'subscription': subscription})
 
-    return HttpResponseRedirect(r('subscriptions:detail', subcription.pk))
+    return HttpResponseRedirect(r('subscriptions:detail', subscription.pk))
 
 
 def detail(request, pk):
