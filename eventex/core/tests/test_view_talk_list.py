@@ -62,7 +62,6 @@ class TalkListGet(TestCase):
         variables = [
             'morning_talks',
             'afternoon_talks',
-            'courses'
         ]
 
         for key in variables:
