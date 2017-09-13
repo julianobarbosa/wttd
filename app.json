@@ -1,0 +1,44 @@
+{
+  "name": "wttd",
+  "scripts": {
+  },
+  "env": {
+    "ALLOWED_HOSTS": {
+      "required": true
+    },
+    "DEBUG": {
+      "required": true
+    },
+    "EMAIL_BACKEND": {
+      "required": true
+    },
+    "EMAIL_HOST": {
+      "required": true
+    },
+    "EMAIL_HOST_PASSWORD": {
+      "required": true
+    },
+    "EMAIL_HOST_USER": {
+      "required": true
+    },
+    "EMAIL_PORT": {
+      "required": true
+    },
+    "EMAIL_USE_TLS": {
+      "required": true
+    },
+    "SECRET_KEY": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-python"
+    }
+  ]
+}
